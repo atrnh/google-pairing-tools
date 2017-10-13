@@ -7,6 +7,11 @@ You still get the freedom of assigning pairs by hand, without the overhead of
 flipping through previous sheets to see if two students have worked together
 before.
 
+## Contents
+- [Installation](https://github.com/atrnh/google-pairing-tools#installation)
+- [How it works](https://github.com/atrnh/google-pairing-tools#how-it-works)
+- [To do](https://github.com/atrnh/google-pairing-tools#to-do)
+
 ## Installation
 Currently, this is not an add-on that you can just install (but it might be,
 later) so you're gonna have to do this for now:
