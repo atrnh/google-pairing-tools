@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: sans-serif, Helvetica;
+        font-size: 14px;
+      }
+
+      p { margin: 0; }
+
+      body > div { margin-bottom: 1em; }
+
+      #warning {
+        font-size: 0.8em;
+        line-height: 1.3em;
+        background-color: #ffe5e1;
+        padding: 1em;
+      }
+
+      button {
+        width: 100%;
+        padding: 0.8em;
+        background-color: #e94831;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+      }
+
+      button:hover { background-color: #d2432e; }
+
+      .hidden { display: none; }
+    </style>
+  </head>
+  <script>
+    function getPairsWithID(id) {
+      var div = document.getElementById('pairs');
+      div.innerHTML = document.getElementById(id).outerHTML;
+    }
+
+    function getPairs() {
+      google.script.run.withSuccessHandler(getPairsWithID).getCurrCellDataAsID();
+    }
+
+  </script>
+  <body>
+    <div>
+      <button id="refresh" onclick="getPairs()">Get Pairs</button>
+    </div>
+    <div id="pairs">
+    </div>
+    <div id="warning>
+      <p>
+        Make sure pair IDs are on the LAST column of your spreadsheet, 
+        otherwise things will get ugly!
+      </p>
+    </div>
+    <div class="hidden">
+    
+    <!-- THIS IS INTENTIONALLY LEFT BLANK -->
