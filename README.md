@@ -42,3 +42,4 @@ The add-on assumes that `All Pairs` contains a header, like so:
 ## To do
 - [ ] AppScript - how does it work
 - [ ] Turn this into an installable add-on
+- [ ] Integrate with [hbpair](https://github.com/atrnh/hbpair-cli)
