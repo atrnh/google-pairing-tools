@@ -28,7 +28,7 @@ later) so you're gonna have to do this for now:
 If you don't already have a sheet called `All Pairs`, the add-on will make one
 for you. More about that in a second.
 
-## All Pairs
+### About All Pairs
 This add-on needs a sheet called `All Pairs` in order to work. It's essentially
 the back end for the app.
 
