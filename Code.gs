@@ -40,10 +40,11 @@ function showPairsSidebar() {
  * Render and return sidebar HTML.
  */
 function renderSidebarHTML() {
-  var allPairsByName = SpreadsheetApp.getActiveSpreadsheet()
-    .getSheetByName('All Pairs')
-    .getDataRange()
-    .getValues();
+  var allPairsSheet = 
+    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('All Pairs') ||
+    SpreadsheetApp.getActiveSpreadsheet().insertSheet('All Pairs');
+
+  var allPairsByName = allPairsSheet.getDataRange().getValues();
 
   var renderedHTML = HtmlService.createHtmlOutputFromFile('pairs-sidebar')
     .append(renderPairsHTML(allPairsByName))
@@ -86,9 +87,11 @@ function renderPairsHTML(pairsDataByName) {
  * Ex: 'Hello World' -> 'hello-world'
  */
 function getCurrCellDataAsID() {
-  return SpreadsheetApp.getActiveSpreadsheet()
-    .getSheetByName('All Pairs')
-    .getActiveCell()
+  var allPairsSheet =
+    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('All Pairs') ||
+    SpreadsheetApp.getActiveSpreadsheet().insertSheet('All Pairs');
+
+  return allPairsSheet.getActiveCell()
     .getValue()
     .toLowerCase()
     .replace(' ', '-');
