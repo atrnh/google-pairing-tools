@@ -1,4 +1,3 @@
-ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 # Pairing Tools
 Display a student's previous project partners on Google Sheets.
 
