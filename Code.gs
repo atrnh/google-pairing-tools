@@ -114,6 +114,42 @@ function renderPreviousPairs(pairs) {
 }
 
 
+/**
+ * Return a sheet in CSV format.
+ */
+function getSheetAsCsv(sheetName) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+  var sheetData = sheet.getDataRange().getValues();
+  var rows = [];
+  
+  for (var i = 0; i < sheetData.length; i++) {
+    var row = [];
+    for (var j = 0; j < sheetData[i].length; j++) {
+      if (sheetData[i][j]) {
+        row.push(sheetData[i][j]);
+      }
+    }
+    rows.push(row.join(","));
+  }
+  
+  return rows.join("\n");
+}
+
+
+/**
+ * Import an array of data, overwriting the sheet.
+ */
+function writeToSheet(sheetName, data) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName(sheetName)
+    .clear();
+  
+  data.forEach(function (el) {
+    sheet.appendRow(el);
+  });
+}
+
+
 
 
 /**
