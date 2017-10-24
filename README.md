@@ -1,5 +1,7 @@
 # Pairing Tools
-Display a student's previous project partners on Google Sheets.
+Display a student's previous project partners on Google Sheets. Includes an API
+that is used to integrate with the
+[`hbpair-cli`](https://github.com/atrnh/hbpair-cli) command line tool.
 
 ![Screenshot](/screenshots/pairing-tools.png)
 
@@ -30,10 +32,10 @@ later) so you're gonna have to do this for now:
 7. To use the tool, click on `Pairing Tools > Show previous pairs` and the
    previous pairs sidebar will appear.
 
-If you don't already have a sheet called `All Pairs`, the add-on will make one
-for you. More about that in a second.
-
 ### About All Pairs
+If you are using [`hbpair-cli`](https://github.com/atrnh/hbpair-cli), you don't
+have to worry about this.
+
 This add-on needs a sheet called `All Pairs` in order to work. It's essentially
 the back end for the app.
 
@@ -45,6 +47,6 @@ The add-on assumes that `All Pairs` contains a header, like so:
 *Coming soon*
 
 ## To do
-- [ ] AppScript - how does it work
+- [ ] AppScript - a write-up about how this all works 
 - [ ] Turn this into an installable add-on
-- [ ] Integrate with [hbpair](https://github.com/atrnh/hbpair-cli)
+- [x] Integrate with [`hbpair-cli`](https://github.com/atrnh/hbpair-cli)
