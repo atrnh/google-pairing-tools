@@ -32,27 +32,24 @@ function onOpen() {
  */
 function showPairsSidebar() {
   SpreadsheetApp.getUi()
-    .showSidebar(renderSidebarHTML());
+    .showSidebar(renderSidebarHtml());
 }
 
 
 /**
  * Render and return sidebar HTML.
  */
-function renderSidebarHTML() {
-  var allPairsSheet = 
-    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('All Pairs') ||
-    SpreadsheetApp.getActiveSpreadsheet().insertSheet('All Pairs');
+function renderSidebarHtml() {
+  var allPairsSheet = getSheet('All Pairs'); 
 
   var allPairsByName = allPairsSheet.getDataRange().getValues();
 
-  var renderedHTML = HtmlService.createHtmlOutputFromFile('pairs-sidebar')
-    .append(renderPairsHTML(allPairsByName))
-    .append('</div></body></html>')  // close remaining tags (see pairs-sidebar)
+  var renderedHtml = HtmlService.createHtmlOutputFromFile('pairs-sidebar')
+    .append(renderPairsHtml(allPairsByName))
     .setTitle('Previous pairs')
     .setWidth(300);
   
-  return renderedHTML;
+  return renderedHtml;
 }
 
 
@@ -64,17 +61,19 @@ function renderSidebarHTML() {
  * being the name of the student. It assumes that the first row is a
  * header.
  */
-function renderPairsHTML(pairsDataByName) {
+function renderPairsHtml(pairsDataByName) {
   var html = '';
  
   pairsDataByName.slice(1, pairsDataByName.length)
     .forEach(function (pairData) {
       var student = pairData.shift();
       
+      // Uses student name as the id for the div
       html += openTag('div', student.toLowerCase().replace(' ', '-')) +
               student + "'s previous pairs:" +
               renderPreviousPairs(pairData) +
-              closeTag('div');
+              closeTag('div') + closeTag('div') + closeTag('body') +
+              closeTag('html');
     } 
   );
   return html;
@@ -86,11 +85,9 @@ function renderPairsHTML(pairsDataByName) {
  * 
  * Ex: 'Hello World' -> 'hello-world'
  */
-function getCurrCellDataAsID() {
-  var allPairsSheet =
-    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('All Pairs') ||
-    SpreadsheetApp.getActiveSpreadsheet().insertSheet('All Pairs');
-
+function getCurrCellDataAsId() {
+  var allPairsSheet = getSheet('All Pairs');
+  
   return allPairsSheet.getActiveCell()
     .getValue()
     .toLowerCase()
@@ -150,6 +147,11 @@ function writeToSheet(sheetName, data) {
 }
 
 
+function getSheet(sheetName) {
+  return
+    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('All Pairs') ||
+    SpreadsheetApp.getActiveSpreadsheet().insertSheet('All Pairs');
+}
 
 
 /**
